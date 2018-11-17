@@ -12,8 +12,16 @@ public:
 	OrdList();
 	void push(Node2<T> *p);
 
+	Node2<T>* get_tail();
 
+	Node2<T>* get_head();
+	void deltail() {
+		this->deltail();
+	}
 
+	void delhead() {
+		this->delhead();
+	}
 
 	
 
@@ -30,7 +38,7 @@ public:
 		this->printn();
 	 }
 
-	T* get_list(unsigned int &size);
+	T* get_arr(unsigned int &size);
 
 
 

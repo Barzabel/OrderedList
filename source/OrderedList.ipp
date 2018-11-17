@@ -66,7 +66,7 @@ void OrdList<T>::del(T val) {
 
 template<class T>
 
-T*  OrdList<T>::get_list(unsigned int &size) {
+T*  OrdList<T>::get_arr(unsigned int &size) {
 
 	size = this->size();
 	T *res = new T[this->size()];
@@ -81,4 +81,16 @@ T*  OrdList<T>::get_list(unsigned int &size) {
 	
 
 	return res;
+}
+
+template<class T>
+Node2<T>* OrdList<T>::get_tail() {
+	return this->gettail();
+
+}
+
+template<class T>
+Node2<T>* OrdList<T>::get_head() {
+	return this->gettail();
+
 }

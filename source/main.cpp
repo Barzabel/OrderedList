@@ -28,7 +28,7 @@ int main() {
 
 	unsigned int i;
 
-	int *pa = a.get_list(i);
+	int *pa = a.get_arr(i);
 	for(unsigned int ia=0;ia<i;ia++)
 	{
 		cout<<pa[ia]<<endl;
