@@ -9,17 +9,17 @@
 template <class T>
 class OrdList:private LinkedList2<T> {
 public:
-	OrdList();
+	OrdList(bool is_leftsort);
 	void push(Node2<T> *p);
 
 	Node2<T>* get_tail();
 
 	Node2<T>* get_head();
-	void deltail() {
+	void del_tail() {
 		this->deltail();
 	}
 
-	void delhead() {
+	void del_head() {
 		this->delhead();
 	}
 
@@ -50,11 +50,36 @@ public:
 
 private:
 
-bool is_big(Node2<T>* val1, Node2<T>* val2);
-bool is_big(Node2<char*>* val1, Node2<char*>* val2);
+bool is_big(T val1, T val2);
+bool isLeft;
+
+char * funclir(char * val)
+{
+	char * n = val;
+	while ((*val) == ' ')
+	{
+
+		val = val + 1;
+	}
+
+	while (*n != '\0')
+	{
+
+		if ((*n == ' ') && (*(n + 1) == '\0'))
+		{
+			*n = '\0';
+			n--;
+		}
+		else { ++n; }
+
+	}
+	return val;
+}
+
+
+
 
 };
-
 
 
 

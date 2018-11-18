@@ -3,7 +3,7 @@
 
 
 template<class T>
-OrdList<T>::OrdList() {
+OrdList<T>::OrdList(bool is_leftsort ):isLeft(is_leftsort) {
 
 
 
@@ -14,7 +14,7 @@ template<class T>
 void OrdList<T>::push(Node2<T> *p) 
 {
 	
-	if ((this->gethead() ==nullptr)||(this->is_big(this->gethead(), p )))
+	if ((this->gethead() ==nullptr)||(this->is_big(this->gethead()->value, p->value )))
 	{
 		
 		this->add_in_head(p);
@@ -28,39 +28,104 @@ void OrdList<T>::push(Node2<T> *p)
 	}
 
 	Node2<T>* H= this->gethead();
-
+	
 
 	
 	while (H != nullptr) {
-		if (this->is_big(H, p)) {
+		if (this->is_big(H->value, p->value)) {
 			this->add_in_position(H->prev, p);
 			return;
 		}
 		H = H->next;
 	}
 	
+
+		this->add_in_tail(p);
 	
 }
 
 
 template<class T>
-bool OrdList<T>::is_big(Node2<T>* val1, Node2<T>* val2) {
-	if (val1->value > val2->value) {
-		return true;
+bool OrdList<T>::is_big(T val1, T val2) {
+	if(this->isLeft)
+	{
+		if (val1 > val2)
+		{
+			return true;
+		}
+		return false;
 	}
-	return false;
+	else 
+	{
+		if (val1 < val2) 
+		{
+			return true;
+		}
+		return false;
+	}
+	
 }
 
+
+
+bool OrdList<char*>::is_big(char* val1,char* val2) {
+
+	char* value1 = this->funclir(val1);
+	char* value2 = this->funclir(val2);
+	int size1 = 0;
+	int size2 = 0;
+	while (*value1 != '\0') { size1++; value1++; }
+	while (*value2 != '\0') { size2++; value2++; }
+	if (this->isLeft)
+	{
+		if (size1> size2)
+		{
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		if (size1 < size2)
+		{
+			return true;
+		}
+		return false;
+	}
+
+}
 
 
 template<class T>
 Node2<T>* OrdList<T>::find(T val) {
-	return this->find(val);
+
+	Node2<T>*H = this->gethead();
+	
+	
+	while (H != nullptr) 
+	{
+		
+		if (H->value == val)
+		{
+			return H;
+		}
+		if (this->is_big( H->value,val)) 
+		{
+			return nullptr;
+		}
+
+
+
+		H = H->next;
+	
+	}
+	return nullptr;
 }
+
 
 template<class T>
 void OrdList<T>::del(T val) {
-	this->del(val);
+	this->dell(val);
 }
 
 
